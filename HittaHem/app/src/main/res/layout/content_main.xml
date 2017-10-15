@@ -8,4 +8,48 @@
     tools:context="jononannes.hittahem.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="180dp"
+        android:gravity="center_horizontal"
+        android:text="Hello World!"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Click Me"
+        app:layout_constraintTop_toBottomOf="@+id/txt"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Reset"
+        app:layout_constraintTop_toBottomOf="@+id/btn"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintRight_toRightOf="@+id/btn"
+        android:layout_marginRight="1dp" />
 </android.support.constraint.ConstraintLayout>

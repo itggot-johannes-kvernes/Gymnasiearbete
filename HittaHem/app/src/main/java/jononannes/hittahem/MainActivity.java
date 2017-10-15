@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +28,25 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Button btn = (Button)findViewById(R.id.btn);
+        Button btn2 = (Button)findViewById(R.id.btn2);
+        final TextView txt = (TextView)findViewById(R.id.txt);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txt.setText("You clikced the button!");
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txt.setText("Hello World!");
+            }
+        });
+
     }
 
     @Override
