@@ -30,20 +30,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button btn = (Button)findViewById(R.id.btn);
-        Button btn2 = (Button)findViewById(R.id.btn2);
         final TextView txt = (TextView)findViewById(R.id.txt);
 
         btn.setOnClickListener(new View.OnClickListener() {
+            boolean isReset = true;
             @Override
             public void onClick(View v) {
-                txt.setText("You clikced the button!");
-            }
-        });
-
-        btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                txt.setText("Hello World!");
+                if (isReset) {
+                    txt.setText("You clikced the button!");
+                    isReset = false;
+                } else {
+                    txt.setText("Hello World!");
+                    isReset = true;
+                }
             }
         });
 
