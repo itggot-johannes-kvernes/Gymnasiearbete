@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
@@ -22,11 +23,11 @@ import javax.net.ssl.HttpsURLConnection;
 class HttpURLConnectionTest {
     public static void main(String[] args) throws Exception {
         HttpURLConnectionTest http = new HttpURLConnectionTest();
-        // System.out.println("Test 1 - GET");
-        // http.sendGet();
 
-        System.out.println("Test 2 - POST");
+        //String accessToken = null;
         http.sendPost();
+
+        //http.sendGet();
     }
 
     private void sendGet() throws Exception {
@@ -56,28 +57,32 @@ class HttpURLConnectionTest {
     }
 
     private void sendPost() throws Exception {
-        String key = "RdPqSkfT12Qe9n4MsgsgLkxfXSEa";
-        String secret = "3LKEtJTy9bP5yjMv_maDWhjMNaIa";
-        String toConvert = key + ":" + secret;
-        System.out.println("About to base64 encode key:secret");
-        String accessToken = Base64.encodeToString(toConvert.getBytes("UTF-8"), Base64.NO_WRAP);
-        System.out.println(accessToken);
+        //String key = "RdPqSkfT12Qe9n4MsgsgLkxfXSEa";
+        //String secret = "3LKEtJTy9bP5yjMv_maDWhjMNaIa";
+        //String toConvert = key + ":" + secret;
+        //System.out.println("About to base64 encode key:secret");
+        String authorization = "UmRQcVNrZlQxMlFlOW40TXNnc2dMa3hmWFNFYTozTEtFdEpUeTliUDV5ak12X21hRFdoak1OYUlh";
+        /*
+        try {
+            accessToken = Base64.encodeToString(toConvert.getBytes("UTF-8"), android.util.Base64.NO_WRAP);
+            System.out.println(accessToken);
+        } catch(UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        */
 
         String url = "https://api.vasttrafik.se/token";
         URL obj = new URL(url);
         HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
         con.setRequestMethod("POST");
-        // con.setRequestProperty("User-Agent", USER_AGENT);
-        // con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
         con.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
-        con.setRequestProperty("Authorization", "Basic " + accessToken);
+        con.setRequestProperty("Authorization", "Basic " + authorization);
 
-        // String urlParameters = "sn=C02G8416DRJM&cn=&locale=&caller=&num=12345";
 
         con.setDoOutput(true);
         DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        // wr.writeBytes(urlParameters);
+        wr.writeBytes("grant_type=client_credentials");
         wr.flush();
         wr.close();
 
