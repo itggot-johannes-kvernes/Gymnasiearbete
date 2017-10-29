@@ -19,15 +19,20 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 class HttpURLConnectionTest {
+    String accessToken = null;
+
     public static void main(String[] args) throws Exception {
+
         HttpURLConnectionTest http = new HttpURLConnectionTest();
 
-        //String accessToken = null;
         http.sendPost();
 
-        //http.sendGet();
+        http.sendGet();
     }
 
     private void sendGet() throws Exception {
@@ -36,9 +41,7 @@ class HttpURLConnectionTest {
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
         con.setRequestMethod("GET");
-        con.setRequestProperty("Authorization", "Bearer c7879da6-e32f-3efb-a1c3-ea5751ce588d");
-
-        // con.setRequestProperty("User-Agent", USER_AGENT);
+        con.setRequestProperty("Authorization", "Bearer " + accessToken);
 
         int responseCode = con.getResponseCode();
         String responseMessage = con.getResponseMessage();
@@ -99,9 +102,26 @@ class HttpURLConnectionTest {
         }
         in.close();
 
-        System.out.println(response.toString());
+        String responseString = response.toString();
+
+        System.out.println(responseString);
+
+        String[] splitResponse = responseString.split("\"");
+        accessToken = splitResponse[splitResponse.length - 2];
+        System.out.println(accessToken);
+
+
+        /* System.out.println(1);
+        JSONObject jsonObj = new JSONObject(responseString);
+        System.out.println(2);
+        accessToken = jsonObj.getString("access_token");
+        System.out.println(3);
+        System.out.println(accessToken);
+        */
     }
 }
+
+
 
 public class MainActivity extends AppCompatActivity {
 
